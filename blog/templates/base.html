@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5D5CDE',
+                    }
+                }
+            },
+            darkMode: 'class'
+        }
+        
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+    </script>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 min-h-screen flex flex-col">
+    <!-- Navigation Bar -->
+    <nav class="bg-white dark:bg-gray-800 shadow-md px-4 py-3">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/home" class="text-2xl font-bold text-primary">My Blog</a>
+            <div class="flex space-x-4">
+                <a href="/" class="hover:text-primary">Home</a>
+                <a href="/about" class="hover:text-primary">About</a>
+                <a href="/contact" class="hover:text-primary">Contact</a>
+                <a href="/admin" class="hover:text-primary">Admin</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-gray-800 shadow-md mt-auto">
+        <div class="container mx-auto px-4 py-6 text-center">
+            <p>© 2023 My Blog. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

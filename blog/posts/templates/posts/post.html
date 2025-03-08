@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Title - My Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5D5CDE',
+                    }
+                }
+            },
+            darkMode: 'class'
+        }
+        
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+    </script>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 min-h-screen flex flex-col">
+    <!-- Navigation Bar -->
+    <nav class="bg-white dark:bg-gray-800 shadow-md px-4 py-3">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold text-primary">My Blog</a>
+            <div class="flex space-x-4">
+                <a href="/" class="hover:text-primary">Home</a>
+                <a href="/about" class="hover:text-primary">About</a>
+                <a href="/contact" class="hover:text-primary">Contact</a>
+                <a href="/admin" class="hover:text-primary">Admin</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto flex-grow px-4 py-8 flex flex-col md:flex-row">
+        <!-- Post Content -->
+        <article class="w-full md:w-2/3 md:pr-8">
+            <!-- Post Header -->
+            <div class="mb-6">
+                <a href= "/post/home" class="text-primary mb-4 inline-block">&larr; Back to posts</a>
+                
+                <!-- Post Metadata -->
+                <div class="flex items-center mb-2 text-sm text-gray-500 dark:text-gray-400">
+                    <span id="post-date">June 15, 2023</span>
+                    <span class="mx-2">•</span>
+                    <span id="post-category">Technology</span>
+                    <span class="mx-2">•</span>
+                    <span id="post-reading-time">5 min read</span>
+                </div>
+                
+                <!-- Post Title -->
+                <h1 id="post-title" class="text-3xl md:text-4xl font-bold mb-4">{{post_dict.title}}</h1>
+                
+                <!-- Author Info -->
+                <div class="flex items-center mb-6">
+                    <div id="author-avatar" class="w-12 h-12 rounded-full bg-gray-300 dark:bg-gray-600 mr-4"></div>
+                    <div>
+                        <p id="author-name" class="font-medium">John Doe</p>
+                        <p id="author-bio" class="text-sm text-gray-500 dark:text-gray-400">Web Developer</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Featured Image -->
+            <div id="post-image" class="h-64 md:h-80 bg-gray-200 dark:bg-gray-700 rounded-lg mb-6 overflow-hidden">
+                <!-- Image would be dynamically inserted here -->
+            </div>
+            
+            <!-- Post Content -->
+            <div id="post-content" class="prose dark:prose-invert max-w-none mb-8">
+                <p>
+                {{post_dict.content}}
+                </p>
+                
+                <h2>Getting Started with Express</h2>
+                
+                <p>
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+                
+                <pre><code>
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
+});
+                </code></pre>
+                
+                <p>
+                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                </p>
+                
+                <h2>Creating Dynamic Routes</h2>
+                
+                <p>
+                    Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+                </p>
+                
+                <blockquote>
+                    <p>The key to building a successful blog is consistency and quality content.</p>
+                </blockquote>
+                
+                <p>
+                    Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+                </p>
+                
+                <h2>Conclusion</h2>
+                
+                <p>
+                    Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.
+                </p>
+            </div>
+            
+            <!-- Post Tags -->
+            <div id="post-tags" class="flex flex-wrap gap-2 mb-8">
+                <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Node.js</span>
+                <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Express</span>
+                <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">Web Development</span>
+                <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm">JavaScript</span>
+            </div>
+            
+            <!-- Share Buttons -->
+            <div class="flex gap-4 mb-8">
+                <button class="px-4 py-2 bg-blue-500 text-white rounded">Share on Twitter</button>
+                <button class="px-4 py-2 bg-blue-800 text-white rounded">Share on Facebook</button>
+                <button class="px-4 py-2 bg-green-600 text-white rounded">Share on WhatsApp</button>
+            </div>
+            
+            <!-- Author Bio -->
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 mb-8">
+                <div class="flex items-center mb-4">
+                    <div id="author-full-avatar" class="w-16 h-16 rounded-full bg-gray-300 dark:bg-gray-600 mr-4"></div>
+                    <div>
+                        <h3 id="author-full-name" class="text-xl font-bold">John Doe</h3>
+                        <p id="author-full-title" class="text-gray-500 dark:text-gray-400">Web Developer & Technical Writer</p>
+                    </div>
+                </div>
+                <p id="author-full-bio" class="text-gray-600 dark:text-gray-300">
+                    John is a full-stack developer with 5 years of experience in web technologies. He specializes in React, Node.js, and database design. In his free time, he contributes to open-source projects and writes technical articles.
+                </p>
+            </div>
+            
+            <!-- Comments Section -->
+            <div class="mb-8">
+                <h3 class="text-2xl font-bold mb-4">Comments (<span id="comment-count">3</span>)</h3>
+                
+                <!-- Comment Form -->
+                <form class="mb-6" id="comment-form">
+                    <div class="mb-4">
+                        <textarea id="comment-content" class="w-full px-4 py-2 border rounded-lg dark:bg-gray-800 dark:border-gray-700 text-base" rows="4" placeholder="Add your comment..." required></textarea>
+                    </div>
+                    <button type="submit" class="px-4 py-2 bg-primary text-white rounded hover:bg-primary/90">Post Comment</button>
+                </form>
+                
+                <!-- Comments List -->
+                <div class="space-y-6" id="comments-container">
+                    <!-- Comment 1 -->
+                    <div class="border-b dark:border-gray-700 pb-6">
+                        <div class="flex items-center mb-2">
+                            <div class="w-10 h-10 rounded-full bg-gray-300 dark:bg-gray-600 mr-3"></div>
+                            <div>
+                                <p class="font-medium">Jane Smith</p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">June 16, 2023 • 10:30 AM</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 mb-2">
+                            Great article! I'm just starting with Express and this was very helpful. Looking forward to more content like this.
+                        </p>
+                        <button class="text-primary text-sm">Reply</button>
+                    </div>
+                    
+                    <!-- Comment 2 with Reply -->
+                    <div class="border-b dark:border-gray-700 pb-6">
+                        <div class="flex items-center mb-2">
+                            <div class="w-10 h-10 rounded-full bg-gray-300 dark:bg-gray-600 mr-3"></div>
+                            <div>
+                                <p class="font-medium">Mike Johnson</p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">June 15, 2023 • 3:45 PM</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 mb-2">
+                            I would add that learning middleware is essential for any Express application. It's one of its most powerful features.
+                        </p>
+                        <button class="text-primary text-sm mb-4">Reply</button>
+                        
+                        <!-- Reply -->
+                        <div class="ml-12 mt-4 bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                            <div class="flex items-center mb-2">
+                                <div class="w-8 h-8 rounded-full bg-gray-300 dark:bg-gray-600 mr-3"></div>
+                                <div>
+                                    <p class="font-medium">John Doe <span class="text-primary text-sm">(Author)</span></p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">June 15, 2023 • 4:20 PM</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-300">
+                                Absolutely right, Mike! Middleware is indeed crucial. I'll cover that in my next tutorial.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Comment 3 -->
+                    <div class="border-b dark:border-gray-700 pb-6">
+                        <div class="flex items-center mb-2">
+                            <div class="w-10 h-10 rounded-full bg-gray-300 dark:bg-gray-600 mr-3"></div>
+                            <div>
+                                <p class="font-medium">Sarah Williams</p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">June 15, 2023 • 1:15 PM</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 mb-2">
+                            Do you have any recommendations for hosting Node.js applications? I'm trying to deploy my first Express app.
+                        </p>
+                        <button class="text-primary text-sm">Reply</button>
+                    </div>
+                </div>
+            </div>
+        </article>
+        
+        <!-- Sidebar -->
+        <aside class="w-full md:w-1/3 mt-8 md:mt-0">
+            <!-- Author Widget -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-6">
+                <h3 class="text-xl font-bold mb-4">About the Author</h3>
+                <div class="flex items-center mb-4">
+                    <div class="w-16 h-16 rounded-full bg-gray-300 dark:bg-gray-600 mr-4"></div>
+                    <div>
+                        <p class="font-medium">John Doe</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">15 Articles</p>
+                    </div>
+                </div>
+                <a href="/author/john-doe" class="block text-center px-4 py-2 bg-primary text-white rounded hover:bg-primary/90">View Profile</a>
+            </div>
+            
+            <!-- Related Posts -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-6">
+                <h3 class="text-xl font-bold mb-4">Related Posts</h3>
+                <ul class="space-y-4" id="related-posts-container">
+                    <li class="flex">
+                        <div class="w-20 h-16 bg-gray-200 dark:bg-gray-700 rounded mr-3"></div>
+                        <div>
+                            <a href="/post/2" class="font-medium hover:text-primary line-clamp-2">Getting Started with MongoDB and Node.js</a>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">June 10, 2023</p>
+                        </div>
+                    </li>
+                    <li class="flex">
+                        <div class="w-20 h-16 bg-gray-200 dark:bg-gray-700 rounded mr-3"></div>
+                        <div>
+                            <a href="/post/3" class="font-medium hover:text-primary line-clamp-2">RESTful API Design Best Practices</a>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">June 5, 2023</p>
+                        </div>
+                    </li>
+                    <li class="flex">
+                        <div class="w-20 h-16 bg-gray-200 dark:bg-gray-700 rounded mr-3"></div>
+                        <div>
+                            <a href="/post/4" class="font-medium hover:text-primary line-clamp-2">Authentication in Express Applications</a>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">May 28, 2023</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Categories -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-6">
+                <h3 class="text-xl font-bold mb-4">Categories</h3>
+                <ul class="space-y-2">
+                    <li>
+                        <a href="/category/technology" class="flex justify-between items-center hover:text-primary">
+                            <span>Technology</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 rounded-full px-2 py-1 text-xs">18</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/category/nodejs" class="flex justify-between items-center hover:text-primary">
+                            <span>Node.js</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 rounded-full px-2 py-1 text-xs">12</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/category/javascript" class="flex justify-between items-center hover:text-primary">
+                            <span>JavaScript</span>
+                            <span class="bg-gray-200 dark:bg-gray-700 rounded-full px-2 py-1 text-xs">9</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Newsletter Signup -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+                <h3 class="text-xl font-bold mb-4">Newsletter</h3>
+                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                    Subscribe to get the latest posts and updates.
+                </p>
+                <form>
+                    <div class="mb-3">
+                        <input type="email" class="w-full px-4 py-2 border rounded-lg dark:bg-gray-800 dark:border-gray-700 text-base" placeholder="Enter your email" required>
+                    </div>
+                    <button type="submit" class="w-full py-2 bg-primary text-white rounded hover:bg-primary/90">Subscribe</button>
+                </form>
+            </div>
+        </aside>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-gray-800 shadow-md mt-auto">
+        <div class="container mx-auto px-4 py-6 text-center">
+            <p>© 2023 My Blog. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
